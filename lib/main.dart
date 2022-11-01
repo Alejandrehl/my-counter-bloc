@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_counter_bloc/bloc/counter/counter_bloc.dart';
 import 'package:my_counter_bloc/pages/home_page.dart';
 
 void main() {
@@ -10,13 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My Counter BLoC',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (_) => CounterBloc(),
+      child: MaterialApp(
+        title: 'My Counter BLoC',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'My Counter BLoC'),
       ),
-      home: const MyHomePage(title: 'My Counter BLoC'),
     );
   }
 }
